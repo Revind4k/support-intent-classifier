@@ -1,0 +1,74 @@
+{
+  "model": "distilbert-base-uncased",
+  "device": "mps",
+  "params_m": 67.0,
+  "args": {
+    "model": "distilbert-base-uncased",
+    "epochs": 5,
+    "lr": 5e-05,
+    "batch_size": 32,
+    "max_len": 64,
+    "seed": 13
+  },
+  "best_epoch": 5,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 3.1917,
+      "val_accuracy": 0.7313
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.8723,
+      "val_accuracy": 0.8781
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.3333,
+      "val_accuracy": 0.9041
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.1663,
+      "val_accuracy": 0.9171
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.0997,
+      "val_accuracy": 0.9231
+    }
+  ],
+  "train_seconds": 603,
+  "test": {
+    "accuracy": 0.9244,
+    "macro_f1": 0.9244,
+    "n": 3080,
+    "top_confusions": [
+      {
+        "true": "why_verify_identity",
+        "predicted": "verify_my_identity",
+        "count": 5
+      },
+      {
+        "true": "declined_transfer",
+        "predicted": "declined_card_payment",
+        "count": 5
+      },
+      {
+        "true": "card_arrival",
+        "predicted": "card_delivery_estimate",
+        "count": 4
+      },
+      {
+        "true": "card_delivery_estimate",
+        "predicted": "card_arrival",
+        "count": 4
+      },
+      {
+        "true": "pin_blocked",
+        "predicted": "change_pin",
+        "count": 4
+      }
+    ]
+  }
+}

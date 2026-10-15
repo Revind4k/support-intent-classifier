@@ -1,0 +1,79 @@
+{
+  "model": "bert-base-uncased",
+  "device": "mps",
+  "params_m": 109.5,
+  "args": {
+    "model": "bert-base-uncased",
+    "epochs": 6,
+    "lr": 4e-05,
+    "batch_size": 32,
+    "max_len": 64,
+    "seed": 13
+  },
+  "best_epoch": 6,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 3.6485,
+      "val_accuracy": 0.6783
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.3292,
+      "val_accuracy": 0.8691
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.5081,
+      "val_accuracy": 0.9081
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.2478,
+      "val_accuracy": 0.9141
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.1363,
+      "val_accuracy": 0.9161
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.0872,
+      "val_accuracy": 0.9281
+    }
+  ],
+  "train_seconds": 2550,
+  "test": {
+    "accuracy": 0.9312,
+    "macro_f1": 0.9314,
+    "n": 3080,
+    "top_confusions": [
+      {
+        "true": "card_acceptance",
+        "predicted": "country_support",
+        "count": 4
+      },
+      {
+        "true": "top_up_reverted",
+        "predicted": "top_up_failed",
+        "count": 4
+      },
+      {
+        "true": "card_arrival",
+        "predicted": "card_delivery_estimate",
+        "count": 3
+      },
+      {
+        "true": "card_delivery_estimate",
+        "predicted": "card_arrival",
+        "count": 3
+      },
+      {
+        "true": "pin_blocked",
+        "predicted": "change_pin",
+        "count": 3
+      }
+    ]
+  }
+}

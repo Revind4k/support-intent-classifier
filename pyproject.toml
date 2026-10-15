@@ -1,0 +1,33 @@
+[project]
+name = "support-intent-classifier"
+version = "0.1.0"
+description = "BANKING77 intent classification: TF-IDF baseline vs fine-tuned DistilBERT"
+authors = [{ name = "Eren Han Yasar", email = "drknse@gmail.com" }]
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.5.4",
+    "scikit-learn>=1.9.1",
+    "torch>=2.14.1",
+    "transformers>=5.19.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.1,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "intent"
+
+# CI runs on Linux: use the CPU-only PyTorch wheel there instead of the multi-GB CUDA build.
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu", marker = "sys_platform == 'linux'" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

@@ -1,0 +1,100 @@
+{
+  "majority": {
+    "accuracy": 0.013,
+    "macro_f1": 0.0003,
+    "n": 3080,
+    "top_confusions": [
+      {
+        "true": "card_arrival",
+        "predicted": "card_payment_fee_charged",
+        "count": 40
+      },
+      {
+        "true": "card_linking",
+        "predicted": "card_payment_fee_charged",
+        "count": 40
+      },
+      {
+        "true": "exchange_rate",
+        "predicted": "card_payment_fee_charged",
+        "count": 40
+      },
+      {
+        "true": "card_payment_wrong_exchange_rate",
+        "predicted": "card_payment_fee_charged",
+        "count": 40
+      },
+      {
+        "true": "extra_charge_on_statement",
+        "predicted": "card_payment_fee_charged",
+        "count": 40
+      }
+    ]
+  },
+  "tfidf_logreg": {
+    "val": {
+      "accuracy": 0.9041,
+      "macro_f1": 0.9027,
+      "n": 1001,
+      "top_confusions": [
+        {
+          "true": "beneficiary_not_allowed",
+          "predicted": "failed_transfer",
+          "count": 4
+        },
+        {
+          "true": "wrong_exchange_rate_for_cash_withdrawal",
+          "predicted": "wrong_amount_of_cash_received",
+          "count": 3
+        },
+        {
+          "true": "activate_my_card",
+          "predicted": "card_arrival",
+          "count": 2
+        },
+        {
+          "true": "top_up_reverted",
+          "predicted": "pending_top_up",
+          "count": 2
+        },
+        {
+          "true": "transfer_not_received_by_recipient",
+          "predicted": "balance_not_updated_after_bank_transfer",
+          "count": 2
+        }
+      ]
+    },
+    "test": {
+      "accuracy": 0.9117,
+      "macro_f1": 0.9119,
+      "n": 3080,
+      "top_confusions": [
+        {
+          "true": "virtual_card_not_working",
+          "predicted": "get_disposable_virtual_card",
+          "count": 5
+        },
+        {
+          "true": "verify_my_identity",
+          "predicted": "why_verify_identity",
+          "count": 5
+        },
+        {
+          "true": "pending_top_up",
+          "predicted": "top_up_failed",
+          "count": 4
+        },
+        {
+          "true": "card_arrival",
+          "predicted": "card_delivery_estimate",
+          "count": 3
+        },
+        {
+          "true": "card_payment_wrong_exchange_rate",
+          "predicted": "wrong_exchange_rate_for_cash_withdrawal",
+          "count": 3
+        }
+      ]
+    }
+  }
+}
