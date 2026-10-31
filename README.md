@@ -25,6 +25,18 @@ The most common remaining mistakes are genuinely close intents:
 
 Full metrics, per-epoch history and confusions are in `results/*.json`.
 
+### Where BERT still gets confused
+
+![Confusion matrix for the 10 most-confused intents, BERT-base](docs/confusion-bert-base-uncased.png)
+
+The figure zooms in on the 10 intents that make up BERT's most-confused pairs (`uv run python -m intent.confusion`). Numbers are message counts; the shading is the share of each true intent's test messages, with the diagonal left blank.
+
+- **The four bank-transfer intents behave like one blurred class.** `balance_not_updated_after_bank_transfer`, `pending_transfer`, `transfer_not_received_by_recipient` and `transfer_timing` swap with each other 20 times in 160 test messages. All four describe the same situation (money sent, not there yet) from different angles, so the wording rarely says which one the customer means.
+- **The other pairs are near-synonyms:** `card_arrival` and `card_delivery_estimate`, `verify_my_identity` and `why_verify_identity`, and `card_acceptance` misread as `country_support`. (`top_up_reverted` misread as `top_up_failed` also has 4 errors; it ties with the `card_acceptance` pair for the last two slots and misses the cut only on the tie-break.)
+- **Most errors are not in this block.** Only 38 of the 212 test errors fall inside it. 116 of the misroutes are one-off pairs that happen exactly once, so no single merge or extra rule would fix them. That long tail is where more labelled data would matter.
+
+DistilBERT picks the same 10 intents (`results/confusion-distilbert-base-uncased.json`), with 23 swaps inside the transfer cluster instead of 20.
+
 ## Data checks
 
 - **Exact duplicates.** 4 training texts are exact duplicates (none with conflicting labels).
@@ -39,6 +51,7 @@ Full metrics, per-epoch history and confusions are in `results/*.json`.
   - dynamic padding per batch
   - best-on-validation checkpointing
   - runs on CUDA, Apple MPS, or CPU
+- `confusion.py` runs a checkpoint over the test split, saves the full confusion matrix, and plots the most-confused intents.
 - `predict.py` gives top-3 intents with probabilities for any message.
 
 ```bash
@@ -47,6 +60,7 @@ uv run python -m intent.baseline
 uv run python -m intent.train --model distilbert-base-uncased --epochs 5
 uv run python -m intent.train --model bert-base-uncased --epochs 6 --lr 4e-5
 uv run python -m intent.predict "my card still hasn't arrived" "why do you need to verify my identity?"
+uv run python -m intent.confusion --model bert-base-uncased
 uv run pytest
 ```
 

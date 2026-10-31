@@ -5,6 +5,7 @@ description = "BANKING77 intent classification: TF-IDF baseline vs fine-tuned Di
 authors = [{ name = "Eren Han Yasar", email = "drknse@gmail.com" }]
 requires-python = ">=3.12"
 dependencies = [
+    "matplotlib>=3.11.2",
     "numpy>=2.5.4",
     "scikit-learn>=1.9.1",
     "torch>=2.14.1",
